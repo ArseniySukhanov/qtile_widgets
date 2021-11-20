@@ -54,6 +54,10 @@ class Internet(base._Widget):
         base._Widget.__init__(self, length, **config)
         self.add_defaults(Internet.defaults)
 
+    def timer_setup(self):
+        self.draw()
+        self.timeout_add(self.update_interval, self.timer_setup)
+
     def draw_wifi(self, percentage):
         WIFI_HEIGHT = 10
         WIFI_ARC_DEGREES = 80
@@ -69,7 +73,7 @@ class Internet(base._Widget):
                             WIFI_HEIGHT,
                             to_rads(270 - half_arc),
                             to_rads(270 + half_arc))
-        self.drawer.set_source_rgb("666666")
+        self.drawer.set_source_rgb("282c34")
         self.drawer.ctx.fill()
 
         # Draw white section to represent signall strength
@@ -80,7 +84,7 @@ class Internet(base._Widget):
                             WIFI_HEIGHT * percentage,
                             to_rads(270 - half_arc),
                             to_rads(270 + half_arc))
-        self.drawer.set_source_rgb("ffffff")
+        self.drawer.set_source_rgb("abb2bf")
         self.drawer.ctx.fill()
 
     def calculate_length(self):
@@ -90,14 +94,24 @@ class Internet(base._Widget):
         self.drawer.clear(self.background or self.bar.background)
         wired = check_wired()
         if wired > 0:
-            self.layout = self.drawer.textlayout("", 'ffffff', 'sans', 20, None,markup = True)
-            self.layout.draw(8, 2)
+            self.layout = self.drawer.textlayout("",
+                                                 'abb2bf',
+                                                 'sans',
+                                                 22,
+                                                 None,
+                                                 markup=True)
+            self.layout.draw(2, 0)
         else:
             essid, quality = get_status(self.interface)
             disconnected = essid is None
             if disconnected:
-                self.layout = self.drawer.textlayout("", 'ffffff', 'sans', 20, None,markup = True)
-                self.layout.draw(8, 2)
+                self.layout = self.drawer.textlayout("",
+                                                     'abb2bf',
+                                                     'sans',
+                                                     22,
+                                                     None,
+                                                     markup=True)
+                self.layout.draw(2, 0)
             else:
                 self.draw_wifi(float(quality/70))
         self.drawer.draw(offsetx=self.offset, offsety=self.offsety,
