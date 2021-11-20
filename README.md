@@ -2,6 +2,7 @@
 Custom [qtile](https://github.com/qtile/qtile) widgets
 ## List of widgets
 Battery widget
+Internet widget (is not fully ready)
 ## Installation
 ```
 git clone https://github.com/ArseniySukhanov/qtile_widgets.git ~/.config/qtile/widgets
