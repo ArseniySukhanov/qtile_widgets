@@ -4,6 +4,8 @@ Custom [qtile](https://github.com/qtile/qtile) widgets
 Battery widget
 
 Internet widget
+
+Volume widget
 ## Installation
 ```
 git clone https://github.com/ArseniySukhanov/qtile_widgets.git ~/.config/qtile/widgets
