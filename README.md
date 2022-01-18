@@ -6,6 +6,8 @@ Battery widget
 Internet widget
 
 Volume widget
+
+Keyboard layout widget (in order to work need [xkblayout-state](https://github.com/nonpop/xkblayout-state.git))
 ## Installation
 ```
 git clone https://github.com/ArseniySukhanov/qtile_widgets.git ~/.config/qtile/widgets
